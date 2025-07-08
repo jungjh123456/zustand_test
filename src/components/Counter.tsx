@@ -38,6 +38,7 @@ export default function Counter() {
         >
           Set to 10
         </button>
+        <button onClick={reset}>reset</button>
       </div>
     </div>
   )

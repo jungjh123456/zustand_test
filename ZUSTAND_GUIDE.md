@@ -105,16 +105,22 @@ const { count, name } = useCounterStore((state) => ({
 ### 3. 상태 업데이트 방법
 
 ```typescript
-// 직접 값 설정
+// set은 create 함수의 콜백 함수의 첫 번째 매개변수로 전달됩니다
+// 예시:
+// create((set) => ({
+//   ...store
+// }))
+
+// 직접 값 설정 - create의 콜백에서 받은 set 사용
 set({ count: 10 })
 
-// 이전 상태를 기반으로 업데이트
+// 이전 상태를 기반으로 업데이트 - state 매개변수로 현재 상태 접근
 set((state) => ({ count: state.count + 1 }))
 
-// 부분 업데이트
+// 부분 업데이트 - 객체의 일부만 업데이트할 때
 set((state) => ({ user: { ...state.user, name: 'New Name' } }))
 
-// 비동기 업데이트
+// 비동기 업데이트 - 비동기 함수 내에서도 set 사용 가능
 const fetchUser = async () => {
   const user = await api.getUser()
   set({ user })
